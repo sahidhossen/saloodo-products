@@ -1,11 +1,5 @@
 # Coding Challenge
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
-
 ### Build a set of REST interfaces (no visual interfaces are needed) that allow us to do the following:
 
  -  Manage a list of products that have prices. 
@@ -20,6 +14,7 @@
 - **Laravel/Passport** (For API Authentications - [doc](https://laravel.com/docs/5.8/passport) )
 - **Entrust** (For Role Based Permission - [doc](https://github.com/Zizaco/entrust) )
 - **MYSQL 5.6**
+- **PHP 7.2.1**
 
 ## Installation
 1. Clone the repository from here- 
@@ -42,6 +37,7 @@
     php artisan migrate:refresh --seed
     ```
     It will create user and their roles
+    ( Database seeds file location: ```project/database/seeds``` )
 
     ### For administrator user
     ```
@@ -83,7 +79,12 @@ API Uses Documentation
 
 ## User Login
 ***( I have use postman for test all of the API. )***
-### With GuzzleHttp
+
+**URL :**  ``http://ocalhost:8000.com/oauth/token`` 
+
+**Method :** ``POST``
+
+With GuzzleHttp
 ```
 $http = new GuzzleHttp\Client;
 
@@ -109,9 +110,11 @@ return json_decode((string) $response->getBody(), true);
     "refresh_token": ""
 }
 ```
-## Show All Products
+## 1. Show All Products
 
-```url: http://localhost:8000/api/v1/products```
+***URL :*** ```http://localhost:8000/api/v1/products```
+
+***Method :*** ```GET```
 
 ### Header 
 ```
@@ -126,18 +129,20 @@ Authorization : Bearer access_token
 ```
 ## Create Product
 
-```URl: http://localhost:8000/api/v1/product/create ```
+***URL :*** ```http://localhost:8000/api/v1/product/create ```
+***Method :*** ```POST```
+
 ### Header 
 ```
 Authorization : Bearer access_token
 ```
 ### Body
 ```
-name: 
-price: 
-description:
-grouped: 
-grouped_ids:
+name: iPhone 11 pro
+price: 699
+description: ""
+grouped: true/false
+grouped_ids: product_ids
 ```
 ### Result
 ```
@@ -149,19 +154,61 @@ grouped_ids:
         "image_url": null,
         "stock": 1,
         "grouped": "1",
+        "price": 699,
         "group_ids": "1,2",
         "discount": null,
         "updated_at": "2019-10-27 08:00:44",
         "created_at": "2019-10-27 08:00:44",
-        "id": 5
+        "id": 1
     },
     "message": "Product create successfull"
+}
+```
+## Update Product
+
+***URL :*** ```http://localhost:8000/api/v1/product/edit ```
+***Method :*** ```POST```
+
+### Header 
+```
+Authorization : Bearer access_token
+```
+### Body
+```
+id: 1
+name: iPhone 11 pro
+price: 699
+description: ""
+grouped: true/false
+grouped_ids: product_ids
+```
+### Result
+```
+{
+    "success": true,
+    "data": {
+        "name": "iPhone 11 pro With Cover",
+        "description": "iPhone 11 cover",
+        "image_url": null,
+        "stock": 1,
+        "grouped": "1",
+        "price": 699,
+        "group_ids": "1,2",
+        "discount": null,
+        "updated_at": "2019-10-27 08:00:44",
+        "created_at": "2019-10-27 08:00:44",
+        "id": 1
+    },
+    "message": "Product update successfull"
 }
 ```
 
 ## Create Order 
 
-```URL: http://localhost:8000/api/v1/order/create ```
+***URL :*** ```http://localhost:8000/api/v1/order/create ```
+
+***Method :*** ```POST```
+
 ### Body 
 ```
 {
@@ -184,7 +231,10 @@ grouped_ids:
 
 
 ### Show user Orders
-```URL: http://localhost:8000/api/v1/orders ```
+
+***URL :*** ```http://localhost:8000/api/v1/orders ```
+
+***Method :*** ```GET```
 
 ### Result 
 ```

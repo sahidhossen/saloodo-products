@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Create admin user
         $user = new User();
         $user->username='saloodo';
         $user->email='saloodo@mail.com';
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
         $rootRole = Role::where('name','=','admin')->first();
         $user->attachRole($rootRole);
 
-         //
+         // Create customer
          $user = new User();
          $user->username='customer1';
          $user->email='customer1@mail.com';
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
          $rootRole = Role::where('name','=','customer')->first();
          $user->attachRole($rootRole);
 
-        //
+        // Create customer
          $user = new User();
          $user->username='customer2';
          $user->email='customer2@mail.com';
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
          $rootRole = Role::where('name','=','customer')->first();
          $user->attachRole($rootRole);
 
-         //
+         // Create customer
          $user = new User();
          $user->username='customer3';
          $user->email='customer3@mail.com';
