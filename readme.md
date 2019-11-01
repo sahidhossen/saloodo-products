@@ -26,7 +26,7 @@
     composer install
     ```
 3. Create a database and setup the **.env** file with your database connection.
-    ### Example - 
+    ##### Example - 
     ```
     DB_DATABASE=saloodo
     DB_USERNAME=root
@@ -39,12 +39,12 @@
     It will create user and their roles
     ( Database seeds file location: ```project/database/seeds``` )
 
-    ### For administrator user
+    ##### For administrator user
     ```
     username: saloodo@mail.com
     password: saloodo111
     ```
-    ### For customer
+    ##### For customer
     --  User: 1
     ```
     username: customer1@mail.com
@@ -76,9 +76,10 @@ Client secret: P3m86HCRXWDQLjHzpldnk1sOze0FElM4l2X8xrpI
 -------------
 API Uses Documentation
 ==================
+***( I have use postman for test all of the API. )***
 
 ## User Login
-***( I have use postman for test all of the API. )***
+
 
 **URL :**  ``http://ocalhost:8000.com/oauth/token`` 
 
@@ -110,7 +111,7 @@ return json_decode((string) $response->getBody(), true);
     "refresh_token": ""
 }
 ```
-## 1. Show All Products
+## Show All Products
 
 ***URL :*** ```http://localhost:8000/api/v1/products```
 
